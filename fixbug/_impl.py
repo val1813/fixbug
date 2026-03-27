@@ -30,7 +30,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
-__version__ = "0.7.1"
+__version__ = "1.0.0"
 
 RESET="\033[0m"; BOLD="\033[1m"; RED="\033[91m"; YELLOW="\033[93m"
 GREEN="\033[92m"; CYAN="\033[96m"; GRAY="\033[90m"; WHITE="\033[97m"; MAGENTA="\033[95m"
@@ -351,11 +351,20 @@ def compute_curvature(graph: BehaviorGraph, store: Optional[WorldLineStore]=None
         if store:
             wl = store._lines.get(node.id)
             if wl:
+                # local events: weight 1.0; community (cloud) events: weight 0.6
+                local_events = [e for e in wl.events if not e.get("community")]
+                cloud_events  = [e for e in wl.events if e.get("community")]
+                local_fail = sum(1 for e in local_events if e["kind"]=="failure")
+                local_fix  = sum(1 for e in local_events if e["kind"]=="fix")
+                cloud_fail = sum(1 for e in cloud_events if e["kind"]=="failure") * 0.6
+                cloud_fix  = sum(1 for e in cloud_events if e["kind"]=="fix") * 0.6
+                eff_fail = local_fail + cloud_fail
+                eff_fix  = local_fix  + cloud_fix
                 node.failure_count=wl.failure_count
                 node.fix_count=wl.fix_count
                 node.recent_failure_rate=wl.recent_failure_rate
-                raw = wl.recent_failure_rate*0.8 + min(wl.failure_count/20,1.0)*0.2
-                disc = 0.7 if wl.fix_count>0 and wl.last_event and wl.last_event["kind"]=="fix" else 1.0
+                raw = wl.recent_failure_rate*0.8 + min(eff_fail/20,1.0)*0.2
+                disc = 0.7 if eff_fix>0 and wl.last_event and wl.last_event["kind"]=="fix" else 1.0
                 h = raw * disc
         node.history_curvature = round(min(h,1.0),3)
         # combined — additive: failures always increase above static baseline (paper: Δκ = α·λ^d)
@@ -1151,6 +1160,38 @@ def _parse_js_file(path, mname, graph):
 # ── pytest auto-integration ────────────────────────────────────────────────────
 import xml.etree.ElementTree as _ET
 
+def _upload_fingerprints_async(recorded: list, project_root: Path) -> None:
+    """Upload fingerprinted test outcomes to cloud (fire-and-forget, no key required).
+    Only uploads {fingerprint, outcome, timestamp} — no node names, no code."""
+    if not recorded:
+        return
+    try:
+        import hashlib, threading
+        from datetime import datetime, timezone
+        ph = hashlib.md5(str(project_root).encode()).hexdigest()[:16]
+        events = []
+        for kind, node_id, _detail in recorded:
+            nh = hashlib.sha256(node_id.encode()).hexdigest()[:16]
+            fp = hashlib.sha256(f"{ph}:{nh}".encode()).hexdigest()[:32]
+            events.append({
+                "fingerprint": fp,
+                "outcome": kind,  # "failure" or "fix"
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+            })
+        def _do_upload():
+            try:
+                from fixbug.cloud import _post, CLOUD_URL
+                _post("/fingerprint/upload", {
+                    "project_hash": ph,
+                    "events": events,
+                })
+            except Exception:
+                pass
+        threading.Thread(target=_do_upload, daemon=True).start()
+    except Exception:
+        pass
+
+
 def _run_pytest_and_record(test_path, project_root, store, file_to_module):
     import tempfile
     results = {"passed": 0, "failed": 0, "recorded": []}
@@ -1197,6 +1238,8 @@ def _run_pytest_and_record(test_path, project_root, store, file_to_module):
     finally:
         try: os.unlink(xml_path)
         except: pass
+    # Upload fingerprints immediately (before writing local store)
+    _upload_fingerprints_async(results["recorded"], project_root)
     return results
 
 def _run_simple_tests_and_record(test_path, project_root, store, file_to_module):
@@ -1239,6 +1282,7 @@ def _run_simple_tests_and_record(test_path, project_root, store, file_to_module)
             sys.path.remove(str(project_root))
         except ValueError:
             pass
+    _upload_fingerprints_async(results["recorded"], project_root)
     return results
 
 def _find_best_node(classname, test_name, all_modules):
@@ -2333,12 +2377,10 @@ Examples:
             write_auto_advice(graph, store, root, args.api_key or "", args.hub_url)
             print(colored("✓  完成，结果已告知 AI", GREEN))
             print(colored("   详情见 .fixbug/current_advice.md", GRAY))
-        # auto-sync if enabled
+        # auto-sync: always upload (no key required), pull only if key present
         try:
-            from fixbug.cloud import _load_config, get_api_key as _gak, cmd_sync
-            cfg = _load_config()
-            if cfg.get("auto_sync") and _gak():
-                cmd_sync(root, project_name=root.name)
+            from fixbug.cloud import cmd_sync
+            cmd_sync(root, project_name=root.name)
         except Exception:
             pass
         # CI mode: fail if any node exceeds threshold

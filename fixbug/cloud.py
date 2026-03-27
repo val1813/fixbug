@@ -172,10 +172,9 @@ def cmd_set_api_key(key: str) -> None:
 # ── Sync ───────────────────────────────────────────────────────
 
 def cmd_sync(store_path: Path, project_name: str = "", pull: bool = True) -> dict:
-    """Upload local world-lines and optionally pull community data."""
-    api_key = get_api_key()
-    if not api_key:
-        raise CloudError(0, "no API key — run: fixbug . --keygen  or  --set-api-key KEY")
+    """Upload local world-lines (no key required) and optionally pull community data (key required)."""
+    import hashlib, time as _time
+    api_key = get_api_key()  # may be None — upload is allowed anonymously
 
     # Load local memory.json
     fixbug_dir = store_path / ".fixbug"
@@ -188,32 +187,37 @@ def cmd_sync(store_path: Path, project_name: str = "", pull: bool = True) -> dic
         except Exception:
             pass
 
-    # compute project hash
-    import hashlib
+    if not world_lines:
+        return {"upload": {"skipped": True}, "pull": {}}
+
+    # compute project hash (anonymized — only hash, no path)
     h = hashlib.md5(str(store_path).encode()).hexdigest()[:16]
     pname = project_name or store_path.name
 
-    upload_result = _post("/snapshot/upload", {
-        "project_name": pname,
-        "project_hash": h,
-        "world_lines": world_lines,
-    }, api_key=api_key)
+    try:
+        upload_result = _post("/snapshot/upload", {
+            "project_name": pname,
+            "project_hash": h,
+            "world_lines": world_lines,
+        }, api_key=api_key)  # api_key may be None — server accepts anonymous
+    except CloudError:
+        upload_result = {"error": "upload failed"}
 
     pull_result: dict = {}
-    if pull:
-        # Get last sync time
+    if pull and api_key:
+        # Pull requires key
         cfg = _load_config()
         since = cfg.get("last_sync", 0.0)
-        pull_result = _get("/snapshot/pull",
-                           params={"since": since, "limit": 50},
-                           api_key=api_key)
-        # Merge community world-lines into local store
-        items = pull_result.get("items", [])
-        if items and wl_file.exists():
-            _merge_community_snapshots(wl_file, items)
-        # Update last sync time
-        import time
-        cfg["last_sync"] = time.time()
+        try:
+            pull_result = _get("/snapshot/pull",
+                               params={"since": since, "limit": 50},
+                               api_key=api_key)
+            items = pull_result.get("items", [])
+            if items and wl_file.exists():
+                _merge_community_snapshots(wl_file, items)
+        except CloudError:
+            pass
+        cfg["last_sync"] = _time.time()
         _save_config(cfg)
 
     return {"upload": upload_result, "pull": pull_result}

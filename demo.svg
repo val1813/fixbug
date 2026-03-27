@@ -1,0 +1,140 @@
+<svg width="860" height="560" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="860" height="560" fill="#0d1117" rx="12"/>
+
+  <!-- Top bar -->
+  <rect width="860" height="40" fill="#161b22" rx="12"/>
+  <rect y="28" width="860" height="12" fill="#161b22"/>
+  <rect x="0" y="39" width="860" height="1" fill="#21262d"/>
+  <circle cx="20" cy="20" r="6" fill="#ff5f57"/>
+  <circle cx="40" cy="20" r="6" fill="#febc2e"/>
+  <circle cx="60" cy="20" r="6" fill="#28c840"/>
+  <!-- Tab -->
+  <rect x="80" y="10" width="200" height="24" fill="#0d1117" rx="4"/>
+  <rect x="80" y="10" width="200" height="1" fill="#30363d"/>
+  <rect x="80" y="10" width="1" height="24" fill="#30363d"/>
+  <rect x="280" y="10" width="1" height="24" fill="#30363d"/>
+  <text x="180" y="26" font-family="monospace" font-size="11" fill="#8b949e" text-anchor="middle">Claude Code — my-project</text>
+
+  <!-- Divider vertical -->
+  <rect x="429" y="40" width="1" height="520" fill="#21262d"/>
+
+  <!-- LEFT PANEL -->
+  <!-- Panel title -->
+  <rect x="0" y="40" width="429" height="24" fill="#161b22"/>
+  <rect x="0" y="63" width="429" height="1" fill="#21262d"/>
+  <text x="16" y="56" font-family="monospace" font-size="10" fill="#8b949e" letter-spacing="1">CONVERSATION</text>
+
+  <!-- Message 1: User -->
+  <circle cx="30" cy="90" r="12" fill="#1f6feb"/>
+  <text x="30" y="94" font-family="monospace" font-size="10" fill="#fff" text-anchor="middle">U</text>
+  <rect x="50" y="76" width="360" height="28" fill="#1f6feb22" stroke="#1f6feb44" stroke-width="0.5" rx="6"/>
+  <text x="62" y="92" font-family="monospace" font-size="11" fill="#c9d1d9">为什么 rbac.py 一直报 ImportError？改了三遍了</text>
+
+  <!-- Message 2: AI thinking -->
+  <circle cx="30" cy="124" r="12" fill="#1a1a2e" stroke="#30363d" stroke-width="1"/>
+  <text x="30" y="128" font-family="monospace" font-size="9" fill="#8b949e" text-anchor="middle">AI</text>
+  <rect x="50" y="112" width="360" height="24" fill="#161b22" stroke="#21262d" stroke-width="0.5" rx="6"/>
+  <text x="62" y="128" font-family="monospace" font-size="11" fill="#8b949e" font-style="italic">让我看看 rbac.py 的导入部分...</text>
+
+  <!-- Message 3: AI response -->
+  <circle cx="30" cy="162" r="12" fill="#1a1a2e" stroke="#30363d" stroke-width="1"/>
+  <text x="30" y="166" font-family="monospace" font-size="9" fill="#8b949e" text-anchor="middle">AI</text>
+  <rect x="50" y="148" width="360" height="36" fill="#161b22" stroke="#21262d" stroke-width="0.5" rx="6"/>
+  <text x="62" y="163" font-family="monospace" font-size="11" fill="#c9d1d9">检查了 rbac.py 第12行，语法没问题。</text>
+  <text x="62" y="178" font-family="monospace" font-size="11" fill="#c9d1d9">尝试重新安装依赖？</text>
+
+  <!-- Message 4: User frustrated -->
+  <circle cx="30" cy="208" r="12" fill="#1f6feb"/>
+  <text x="30" y="212" font-family="monospace" font-size="10" fill="#fff" text-anchor="middle">U</text>
+  <rect x="50" y="196" width="360" height="24" fill="#1f6feb22" stroke="#1f6feb44" stroke-width="0.5" rx="6"/>
+  <text x="62" y="212" font-family="monospace" font-size="11" fill="#c9d1d9">重装了还是一样，搞了半小时了...</text>
+
+  <!-- Message 5: AI thinking again -->
+  <circle cx="30" cy="242" r="12" fill="#1a1a2e" stroke="#30363d" stroke-width="1"/>
+  <text x="30" y="246" font-family="monospace" font-size="9" fill="#8b949e" text-anchor="middle">AI</text>
+  <rect x="50" y="230" width="360" height="24" fill="#161b22" stroke="#21262d" stroke-width="0.5" rx="6"/>
+  <text x="62" y="246" font-family="monospace" font-size="11" fill="#8b949e" font-style="italic">再看看 __init__.py 有没有问题...</text>
+
+  <!-- Message 6: /fixbug command -->
+  <circle cx="30" cy="280" r="12" fill="#1f6feb"/>
+  <text x="30" y="284" font-family="monospace" font-size="10" fill="#fff" text-anchor="middle">U</text>
+  <rect x="50" y="268" width="120" height="24" fill="#1f2937" stroke="#374151" stroke-width="0.5" rx="6"/>
+  <text x="62" y="284" font-family="monospace" font-size="13" fill="#60a5fa" font-weight="bold">/fixbug</text>
+
+  <!-- Message 7: AI fixbug response - HIGHLIGHT -->
+  <circle cx="30" cy="328" r="12" fill="#1a1a2e" stroke="#30363d" stroke-width="1"/>
+  <text x="30" y="332" font-family="monospace" font-size="9" fill="#8b949e" text-anchor="middle">AI</text>
+  <rect x="50" y="306" width="360" height="88" fill="#0c1a0c" stroke="#2ea04366" stroke-width="1" rx="6"/>
+  <!-- Green left accent -->
+  <rect x="50" y="306" width="3" height="88" fill="#3fb950" rx="2"/>
+  <!-- fixbug tag -->
+  <rect x="62" y="314" width="78" height="14" fill="#2ea04322" stroke="#2ea04344" stroke-width="0.5" rx="3"/>
+  <text x="101" y="324" font-family="monospace" font-size="9" fill="#3fb950" text-anchor="middle">fixbug 提醒我</text>
+  <text x="62" y="346" font-family="monospace" font-size="11" fill="#c9d1d9">auth.py  曲率 κ=0.87，下游3次失败</text>
+  <text x="62" y="362" font-family="monospace" font-size="11" fill="#c9d1d9">但自身无直接错误记录。</text>
+  <text x="62" y="378" font-family="monospace" font-size="11" fill="#8b949e">根因不在 rbac.py，在上游</text>
+  <text x="62" y="394" font-family="monospace" font-size="11" fill="#f85149" font-weight="bold">auth.py</text>
+  <text x="108" y="394" font-family="monospace" font-size="11" fill="#8b949e"> 的接口定义。</text>
+
+  <!-- Timestamp -->
+  <text x="413" y="415" font-family="monospace" font-size="10" fill="#484f58" text-anchor="end">今天 14:32</text>
+
+  <!-- RIGHT PANEL -->
+  <rect x="430" y="40" width="430" height="24" fill="#161b22"/>
+  <rect x="430" y="63" width="430" height="1" fill="#21262d"/>
+  <text x="446" y="56" font-family="monospace" font-size="10" fill="#8b949e" letter-spacing="1">TERMINAL</text>
+
+  <!-- Terminal content -->
+  <text x="446" y="90" font-family="monospace" font-size="12" fill="#7ee787">$</text>
+  <text x="460" y="90" font-family="monospace" font-size="12" fill="#e6edf3">fixbug scan</text>
+
+  <text x="446" y="114" font-family="monospace" font-size="11" fill="#21262d">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</text>
+  <text x="450" y="128" font-family="monospace" font-size="10" fill="#484f58">  fixbug v0.7.1</text>
+  <text x="446" y="140" font-family="monospace" font-size="11" fill="#21262d">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</text>
+
+  <text x="446" y="162" font-family="monospace" font-size="12" fill="#58a6ff">🔍  正在扫描项目结构...</text>
+  <text x="446" y="182" font-family="monospace" font-size="12" fill="#58a6ff">📊  正在计算曲率...</text>
+  <text x="446" y="202" font-family="monospace" font-size="12" fill="#f97316">⚠   发现 3 个高风险节点...</text>
+
+  <rect x="446" y="215" width="384" height="1" fill="#21262d"/>
+
+  <!-- High risk node -->
+  <text x="446" y="234" font-family="monospace" font-size="12" fill="#f85149" font-weight="bold">  ★ auth.py   κ=0.87  [根因候选]</text>
+  <text x="446" y="252" font-family="monospace" font-size="11" fill="#8b949e" font-style="italic">    → 下游 3 次失败，自身未直接出错</text>
+  <text x="446" y="268" font-family="monospace" font-size="11" fill="#8b949e" font-style="italic">    → 先读这里，不是报错的文件</text>
+
+  <!-- Medium risk -->
+  <text x="446" y="290" font-family="monospace" font-size="12" fill="#e3b341">  ● roles.py  κ=0.71  [高风险]</text>
+  <text x="446" y="308" font-family="monospace" font-size="12" fill="#484f58">  ● rbac.py   κ=0.52  [中风险]</text>
+
+  <rect x="446" y="320" width="384" height="1" fill="#21262d"/>
+
+  <!-- Done -->
+  <text x="446" y="340" font-family="monospace" font-size="12" fill="#3fb950">✓   完成，结果已告知 AI</text>
+  <text x="446" y="358" font-family="monospace" font-size="11" fill="#484f58">    详情见 .fixbug/current_advice.md</text>
+
+  <!-- Experience tip box -->
+  <rect x="446" y="374" width="384" height="48" fill="#0c1a0c" stroke="#2ea04333" stroke-width="0.5" rx="4"/>
+  <text x="458" y="390" font-family="monospace" font-size="10" fill="#3fb950">经验规则 (置信度 0.80)</text>
+  <text x="458" y="406" font-family="monospace" font-size="10" fill="#8b949e">上次 auth.py 问题通过修复 roles.py 上游解决</text>
+  <text x="458" y="418" font-family="monospace" font-size="10" fill="#8b949e">→ 优先检查调用链上游接口定义</text>
+
+  <text x="446" y="450" font-family="monospace" font-size="12" fill="#7ee787">$</text>
+  <text x="462" y="450" font-family="monospace" font-size="12" fill="#484f58">_</text>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="510" width="860" height="50" fill="#0a0c12"/>
+  <rect x="0" y="510" width="860" height="1" fill="#21262d"/>
+  <text x="20" y="532" font-family="monospace" font-size="10" fill="#484f58">fixbug — 代码库的记忆</text>
+  <text x="20" y="548" font-family="monospace" font-size="10" fill="#3fb950">pip install fixbug</text>
+  <text x="430" y="532" font-family="monospace" font-size="10" fill="#484f58">Claude Code · Cursor · Codex</text>
+  <text x="430" y="548" font-family="monospace" font-size="10" fill="#484f58">github.com/val1813/fixbug</text>
+  <text x="840" y="540" font-family="monospace" font-size="10" fill="#2ea043" text-anchor="end">v0.7.1</text>
+</svg>

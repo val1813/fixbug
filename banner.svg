@@ -1,0 +1,90 @@
+<svg width="1200" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="100%" style="stop-color:#0f0f1a"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff4444;stop-opacity:0"/>
+      <stop offset="50%" style="stop-color:#ff4444;stop-opacity:0.12"/>
+      <stop offset="100%" style="stop-color:#ff4444;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <g opacity="0.05" stroke="#ff4444" stroke-width="0.5">
+    <line x1="100" y1="0" x2="100" y2="600"/><line x1="200" y1="0" x2="200" y2="600"/>
+    <line x1="300" y1="0" x2="300" y2="600"/><line x1="400" y1="0" x2="400" y2="600"/>
+    <line x1="500" y1="0" x2="500" y2="600"/><line x1="600" y1="0" x2="600" y2="600"/>
+    <line x1="700" y1="0" x2="700" y2="600"/><line x1="800" y1="0" x2="800" y2="600"/>
+    <line x1="900" y1="0" x2="900" y2="600"/><line x1="1000" y1="0" x2="1000" y2="600"/>
+    <line x1="1100" y1="0" x2="1100" y2="600"/>
+    <line x1="0" y1="100" x2="1200" y2="100"/><line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/><line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+  </g>
+  <rect x="0" y="260" width="1200" height="80" fill="url(#glow)"/>
+  <!-- Graph edges -->
+  <line x1="855" y1="228" x2="975" y2="300" stroke="#ff4444" stroke-width="1.2" opacity="0.35"/>
+  <line x1="975" y1="342" x2="862" y2="383" stroke="#f97316" stroke-width="1" opacity="0.3"/>
+  <line x1="855" y1="220" x2="1075" y2="194" stroke="#ff4444" stroke-width="0.7" opacity="0.2"/>
+  <line x1="975" y1="342" x2="1115" y2="368" stroke="#f97316" stroke-width="0.7" opacity="0.2"/>
+  <path d="M 862 380 Q 818 328 855 228" fill="none" stroke="#ff4444" stroke-width="1" stroke-dasharray="5,5" opacity="0.25"/>
+  <!-- auth.py node - singularity -->
+  <circle cx="855" cy="200" r="30" fill="#ff4444" opacity="0.08"/>
+  <circle cx="855" cy="200" r="24" fill="none" stroke="#ff4444" stroke-width="2" opacity="0.9"/>
+  <circle cx="855" cy="200" r="6" fill="#ff4444" opacity="0.9"/>
+  <text x="855" y="248" font-family="Courier New, monospace" font-size="12" fill="#ff4444" text-anchor="middle" opacity="0.95">auth.py</text>
+  <text x="855" y="263" font-family="Courier New, monospace" font-size="11" fill="#ff4444" text-anchor="middle" opacity="0.7">κ=0.87  ★</text>
+  <!-- roles.py node -->
+  <circle cx="975" cy="320" r="22" fill="#f97316" opacity="0.08"/>
+  <circle cx="975" cy="320" r="18" fill="none" stroke="#f97316" stroke-width="1.5" opacity="0.8"/>
+  <circle cx="975" cy="320" r="5" fill="#f97316" opacity="0.8"/>
+  <text x="975" y="356" font-family="Courier New, monospace" font-size="11" fill="#f97316" text-anchor="middle" opacity="0.9">roles.py</text>
+  <text x="975" y="370" font-family="Courier New, monospace" font-size="10" fill="#f97316" text-anchor="middle" opacity="0.65">κ=0.71</text>
+  <!-- rbac.py node -->
+  <circle cx="862" cy="395" r="16" fill="none" stroke="#eab308" stroke-width="1" opacity="0.7"/>
+  <circle cx="862" cy="395" r="4" fill="#eab308" opacity="0.7"/>
+  <text x="862" y="426" font-family="Courier New, monospace" font-size="11" fill="#eab308" text-anchor="middle" opacity="0.8">rbac.py</text>
+  <text x="862" y="440" font-family="Courier New, monospace" font-size="10" fill="#eab308" text-anchor="middle" opacity="0.55">κ=0.52</text>
+  <!-- utils.py node -->
+  <circle cx="1075" cy="185" r="14" fill="none" stroke="#22c55e" stroke-width="1" opacity="0.55"/>
+  <circle cx="1075" cy="185" r="3" fill="#22c55e" opacity="0.55"/>
+  <text x="1075" y="213" font-family="Courier New, monospace" font-size="10" fill="#22c55e" text-anchor="middle" opacity="0.65">utils.py</text>
+  <!-- api.py node -->
+  <circle cx="1115" cy="375" r="13" fill="none" stroke="#22c55e" stroke-width="1" opacity="0.45"/>
+  <circle cx="1115" cy="375" r="3" fill="#22c55e" opacity="0.45"/>
+  <text x="1115" y="402" font-family="Courier New, monospace" font-size="10" fill="#22c55e" text-anchor="middle" opacity="0.55">api.py</text>
+  <!-- Left content -->
+  <text x="80" y="128" font-family="Courier New, monospace" font-size="72" font-weight="bold" fill="#ffffff" letter-spacing="-3">fixbug</text>
+  <text x="82" y="164" font-family="Courier New, monospace" font-size="15" fill="#ff4444" letter-spacing="3">THE CODEBASE REMEMBERS.</text>
+  <line x1="80" y1="184" x2="740" y2="184" stroke="#ff4444" stroke-width="0.5" opacity="0.35"/>
+  <!-- Feature pills -->
+  <rect x="80" y="204" width="185" height="26" rx="3" fill="none" stroke="#ff4444" stroke-width="0.8" opacity="0.55"/>
+  <text x="172" y="221" font-family="Courier New, monospace" font-size="11" fill="#ff4444" text-anchor="middle" opacity="0.9">★  Singularity Detection</text>
+  <rect x="278" y="204" width="162" height="26" rx="3" fill="none" stroke="#f97316" stroke-width="0.8" opacity="0.55"/>
+  <text x="359" y="221" font-family="Courier New, monospace" font-size="11" fill="#f97316" text-anchor="middle" opacity="0.9">⚡  World-Line Memory</text>
+  <rect x="453" y="204" width="158" height="26" rx="3" fill="none" stroke="#22c55e" stroke-width="0.8" opacity="0.55"/>
+  <text x="532" y="221" font-family="Courier New, monospace" font-size="11" fill="#22c55e" text-anchor="middle" opacity="0.9">◎  Zero LLM Required</text>
+  <!-- Terminal window -->
+  <rect x="80" y="250" width="710" height="248" rx="8" fill="#080810" stroke="#1e1e30" stroke-width="1"/>
+  <rect x="80" y="250" width="710" height="30" rx="8" fill="#111120"/>
+  <rect x="80" y="268" width="710" height="12" fill="#111120"/>
+  <circle cx="106" cy="265" r="5" fill="#ff5f57"/>
+  <circle cx="124" cy="265" r="5" fill="#febc2e"/>
+  <circle cx="142" cy="265" r="5" fill="#28c840"/>
+  <text x="435" y="270" font-family="Courier New, monospace" font-size="11" fill="#3a3a5a" text-anchor="middle">fixbug — terminal</text>
+  <text x="104" y="302" font-family="Courier New, monospace" font-size="13" fill="#3a3a5a">$ fixbug scan</text>
+  <text x="104" y="328" font-family="Courier New, monospace" font-size="13" fill="#6366f1">🔍  fixbug 正在扫描项目结构...</text>
+  <text x="104" y="350" font-family="Courier New, monospace" font-size="13" fill="#6366f1">📊  正在计算曲率...</text>
+  <text x="104" y="372" font-family="Courier New, monospace" font-size="13" fill="#f97316">⚠️   发现 3 个高风险节点...</text>
+  <text x="104" y="400" font-family="Courier New, monospace" font-size="13" fill="#ff4444">  ★  auth.py  κ=0.87  [根因候选]</text>
+  <text x="104" y="420" font-family="Courier New, monospace" font-size="12" fill="#4a4a6a">     → 下游 3 次失败，自身未直接出错</text>
+  <text x="104" y="438" font-family="Courier New, monospace" font-size="12" fill="#4a4a6a">     → 上次通过修复 roles.py 解决（置信度 0.8）</text>
+  <text x="104" y="462" font-family="Courier New, monospace" font-size="13" fill="#22c55e">✓   完成，结果已告知 AI</text>
+  <!-- Bottom bar -->
+  <rect x="0" y="558" width="1200" height="42" fill="#080810"/>
+  <line x1="0" y1="558" x2="1200" y2="558" stroke="#1e1e30" stroke-width="1"/>
+  <text x="80" y="584" font-family="Courier New, monospace" font-size="12" fill="#3a3a5a">pip install fixbug</text>
+  <text x="350" y="584" font-family="Courier New, monospace" font-size="12" fill="#3a3a5a">Claude Code · Cursor · Codex</text>
+  <text x="750" y="584" font-family="Courier New, monospace" font-size="12" fill="#3a3a5a">Python 3.8+  ·  Zero external dependencies</text>
+</svg>

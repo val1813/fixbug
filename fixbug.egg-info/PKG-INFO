@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: fixbug
+Version: 0.7.1
+Summary: fixbug — behavior-graph scanner that learns from your failures
+Author-email: Zhongchang Huang <valhuang@kaiwucl.com>
+License-Expression: LicenseRef-BSL-1.1
+Project-URL: Homepage, https://github.com/val1813/fixbug
+Project-URL: Issues, https://github.com/val1813/fixbug/issues
+Keywords: static analysis,behavior graph,curvature,world-line,code quality,fault localization
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: Topic :: Software Development :: Testing
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Provides-Extra: server
+Requires-Dist: fastapi>=0.100; extra == "server"
+Requires-Dist: uvicorn>=0.20; extra == "server"
+Requires-Dist: pydantic>=2.0; extra == "server"
