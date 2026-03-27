@@ -326,7 +326,7 @@ It's a **failure memory** with a **spatial understanding** of your codebase. The
 
 **会把我的代码上传到云端吗？· Does it send my code to the cloud?**
 
-不会。只上传匿名化的曲率值和规则类型，从不上传代码内容、文件名或项目结构。
+不会。只上传匿名化的曲率值和规则类型，从不上传代码内容、文件名或项目结构。**以党员身份保证，绝不上传任何隐私信息、包括但不限用户信息、文件名、代码等等**
 
 No. Only anonymized curvature values and rule types are uploaded. Never code content, file names, or project structure.
 
