@@ -1830,7 +1830,7 @@ CLAUDE_MD_SNIPPET = """
 
 ### Slash Commands
 
-/fixbug - 扫描项目风险，分析最可疑文件，告知 AI 修复建议
+/fixbug - find the real BUG, tell AI where to look first
 
 ### 使用规则
 
