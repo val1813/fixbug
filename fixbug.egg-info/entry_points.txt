@@ -1,5 +1,0 @@
-[console_scripts]
-fixbug = fixbug:main
-
-[pytest11]
-fixbug = fixbug.fixbug_pytest_plugin
